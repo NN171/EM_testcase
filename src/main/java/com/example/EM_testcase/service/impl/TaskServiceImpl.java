@@ -8,7 +8,11 @@ import com.example.EM_testcase.model.repository.TaskRepository;
 import com.example.EM_testcase.service.TaskService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -43,5 +47,17 @@ public class TaskServiceImpl implements TaskService {
         String header = foundTask.getHeader();
         taskRepository.delete(foundTask);
         return header;
+    }
+
+    @Override
+    public List<Task> getTasksByAuthor(String author, Pageable pageable) {
+        Page<Task> page = taskRepository.findAllTasksByAuthor(author, pageable);
+        return page.getContent();
+    }
+
+    @Override
+    public List<Task> getTasksByExecutor(String executor, Pageable pageable) {
+        Page<Task> page = taskRepository.findAllTasksByExecutor(executor, pageable);
+        return page.getContent();
     }
 }
