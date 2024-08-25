@@ -8,5 +8,4 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface TaskMapper {
     Task createDtoToDomain(CreateTaskDto createTaskDto);
-    Task updateDtoToDomain(UpdateTaskDto updateTaskDto);
 }
