@@ -31,5 +31,8 @@ public class UpdateTaskDto {
 
     @JsonProperty("executor")
     private String executor;
+
+    @JsonProperty("comment")
+    private String comment;
 }
 
