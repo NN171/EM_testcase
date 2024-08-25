@@ -13,4 +13,5 @@ public interface TaskService {
     String deleteTask(Long id);
     List<Task> getTasksByAuthor(String role, Pageable pageable);
     List<Task> getTasksByExecutor(String role, Pageable pageable);
+    boolean isExist(String header, String author, String executor);
 }
