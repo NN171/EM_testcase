@@ -1,7 +1,7 @@
-package com.example.EM_testcase.model.dto;
+package com.example.EM_testcase.dto;
 
-import com.example.EM_testcase.model.domain.Priority;
-import com.example.EM_testcase.model.domain.Status;
+import com.example.EM_testcase.domain.Priority;
+import com.example.EM_testcase.domain.Status;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.EnumType;
