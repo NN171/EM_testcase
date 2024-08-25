@@ -7,4 +7,5 @@ import com.example.EM_testcase.dto.UpdateTaskDto;
 public interface TaskService {
     Task saveTask(CreateTaskDto createTask);
     Task updateTask(Long id, UpdateTaskDto updateTask);
+    String deleteTask(Long id);
 }

@@ -36,4 +36,12 @@ public class TaskServiceImpl implements TaskService {
         objectMapper.updateValue(foundTask, updateTask);
         return taskRepository.save(foundTask);
     }
+
+    @Override
+    public String deleteTask(Long id) {
+        Task foundTask = taskRepository.findById(id).orElseThrow(() -> new RuntimeException("dada")); //TODO
+        String header = foundTask.getHeader();
+        taskRepository.delete(foundTask);
+        return header;
+    }
 }
