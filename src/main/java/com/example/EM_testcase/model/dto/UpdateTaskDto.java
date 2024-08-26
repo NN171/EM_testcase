@@ -1,45 +1,38 @@
-package com.example.EM_testcase.domain;
+package com.example.EM_testcase.model.dto;
 
+import com.example.EM_testcase.model.domain.Priority;
+import com.example.EM_testcase.model.domain.Status;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 @Data
-@Entity
-@Table(name = "task")
-public class Task {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("id")
-    private Long id;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class UpdateTaskDto {
 
-    @Column(nullable = false)
     @JsonProperty("header")
     private String header;
 
-    @Column(nullable = false)
     @JsonProperty("description")
     private String description;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
     @JsonProperty("status")
+    @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
     @JsonProperty("priority")
+    @Enumerated(EnumType.STRING)
     private Priority priority;
 
-    @Column(nullable = false)
     @JsonProperty("author")
     private String author;
 
-    @Column(nullable = false)
     @JsonProperty("executor")
     private String executor;
 
-    @Column
     @JsonProperty("comment")
     private String comment;
 }
+

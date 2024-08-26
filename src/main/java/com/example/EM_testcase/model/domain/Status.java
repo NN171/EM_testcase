@@ -1,4 +1,4 @@
-package com.example.EM_testcase.domain;
+package com.example.EM_testcase.model.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,5 +12,8 @@ public enum Status {
 
     private final String status;
 
+    public String toString() {
+        return name().toLowerCase();
+    }
     //TODO сделать строковую запись
 }

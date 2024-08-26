@@ -1,16 +1,13 @@
-package com.example.EM_testcase.dto;
+package com.example.EM_testcase.model.dto;
 
-import com.example.EM_testcase.domain.Priority;
-import com.example.EM_testcase.domain.Status;
+import com.example.EM_testcase.model.domain.Priority;
+import com.example.EM_testcase.model.domain.Status;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class UpdateTaskDto {
+public class CreateTaskDto {
 
     @JsonProperty("header")
     private String header;
@@ -19,11 +16,9 @@ public class UpdateTaskDto {
     private String description;
 
     @JsonProperty("status")
-    @Enumerated(EnumType.STRING)
     private Status status;
 
     @JsonProperty("priority")
-    @Enumerated(EnumType.STRING)
     private Priority priority;
 
     @JsonProperty("author")
@@ -32,7 +27,7 @@ public class UpdateTaskDto {
     @JsonProperty("executor")
     private String executor;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("comment")
     private String comment;
 }
-

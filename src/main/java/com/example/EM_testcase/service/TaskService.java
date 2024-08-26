@@ -1,8 +1,8 @@
 package com.example.EM_testcase.service;
 
-import com.example.EM_testcase.domain.Task;
-import com.example.EM_testcase.dto.CreateTaskDto;
-import com.example.EM_testcase.dto.UpdateTaskDto;
+import com.example.EM_testcase.model.domain.Task;
+import com.example.EM_testcase.model.dto.CreateTaskDto;
+import com.example.EM_testcase.model.dto.UpdateTaskDto;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

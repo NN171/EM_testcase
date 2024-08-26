@@ -1,4 +1,4 @@
-package com.example.EM_testcase.domain;
+package com.example.EM_testcase.model.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

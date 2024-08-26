@@ -1,12 +1,12 @@
 package com.example.EM_testcase.service.impl;
 
-import com.example.EM_testcase.domain.Task;
-import com.example.EM_testcase.dto.CreateTaskDto;
-import com.example.EM_testcase.dto.UpdateTaskDto;
+import com.example.EM_testcase.model.domain.Task;
+import com.example.EM_testcase.model.dto.CreateTaskDto;
+import com.example.EM_testcase.model.dto.UpdateTaskDto;
 import com.example.EM_testcase.exception.TaskAlreadyExists;
 import com.example.EM_testcase.exception.TaskNotFoundException;
 import com.example.EM_testcase.mapper.TaskMapper;
-import com.example.EM_testcase.model.repository.TaskRepository;
+import com.example.EM_testcase.repository.TaskRepository;
 import com.example.EM_testcase.service.TaskService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
