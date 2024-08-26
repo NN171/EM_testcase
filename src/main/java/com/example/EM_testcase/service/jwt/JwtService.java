@@ -1,18 +1,15 @@
-package com.example.EM_testcase.service;
+package com.example.EM_testcase.service.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
 
 @Service
@@ -20,22 +17,21 @@ public class JwtService {
 
     private static final String SECRET = "3ECEEB00D5FE4217139EAF86194E0C27C1D3EEAA844C7A2CA0C910E465B35EE4";
 
-    public String generateToken(String email) {
-        Map<String, Object> claims = new HashMap<>();
-        return buildToken(claims, email);
-    }
+    public String generateToken(Authentication authentication) {
 
-    public String buildToken(Map<String, Object> claims, String email) {
+        String username = authentication.getName();
+        Date currentDate = new Date();
+        Date expireDate = new Date(currentDate.getTime() + 1000 * 60 * 60 * 24);
+
         return Jwts.builder()
-                .claims(claims)
-                .subject(email)
-                .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
+                .subject(username)
+                .issuedAt(currentDate)
+                .expiration(expireDate)
                 .signWith(getSignKey())
                 .compact();
     }
 
-    private SecretKey getSignKey() {
+    private Key getSignKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }
@@ -55,18 +51,17 @@ public class JwtService {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
-                .verifyWith(getSignKey())
+                .verifyWith((SecretKey) getSignKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
     }
 
-    public Boolean isTokenExpired(String token) {
-        return extractExpiration(token).before(new Date());
-    }
-
-    public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    public Boolean validateToken(String token) {
+        Jwts.parser()
+                .verifyWith((SecretKey) getSignKey())
+                .build()
+                .parse(token);
+        return true;
     }
 }
