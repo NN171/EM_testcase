@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class Handler {
+public class ExceptionAdvice {
 
     @ExceptionHandler(value = TaskNotFoundException.class)
     public ResponseEntity<Object> taskNotFound(TaskNotFoundException ex) {
@@ -19,6 +19,13 @@ public class Handler {
     public ResponseEntity<Object> taskAlreadyExists(TaskAlreadyExists ex) {
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(value = UserNotFoundException.class)
+    public ResponseEntity<Object> userNotFound(UserNotFoundException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
                 .body(ex.getMessage());
     }
 }
